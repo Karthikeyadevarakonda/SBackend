@@ -6,24 +6,23 @@ spring:
     name: XenoShopSync
 
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:5432}/${DB_NAME:salary_db}
-    username: ${DB_USERNAME:postgres}
-    password: ${DB_PASSWORD:password}
+    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:salary_db}
+    username: ${PGUSER:postgres}
+    password: ${PGPASSWORD:password}
     driver-class-name: org.postgresql.Driver
-    
+
   mail:
-    host: smtp-relay.brevo.com
-    port: 587
-    username: 953869001@smtp-brevo.com   # your email, injected from env
-    password: aWSJsqrdC6NHZf27   # app password / smtp password from env
+    host: ${MAIL_HOST:smtp-relay.brevo.com}
+    port: ${MAIL_PORT:587}
+    username: ${MAIL_USERNAME:953869001@smtp-brevo.com}
+    password: ${MAIL_PASSWORD:aWSJsqrdC6NHZf27}
     properties:
       mail:
         smtp:
           auth: true
           starttls:
             enable: true
-    from:
-      w.shaik28835@gmail.com
+    from: ${MAIL_FROM:w.shaik28835@gmail.com}
 
   jpa:
     hibernate:
@@ -36,15 +35,12 @@ spring:
 
 app:
   jwt:
-
-    secret: dev-super-secret-key-1234567890-abcdefghijklmnopqrstuvwxyzletsgowithyourchicken
-    issuer: waseem
-    # Access token lifetime
-    access-minutes: 1440
+    secret: ${JWT_SECRET:dev-super-secret-key-1234567890-abcdefghijklmnopqrstuvwxyzletsgowithyourchicken}
+    issuer: ${JWT_ISSUER:waseem}
+    access-minutes: ${JWT_ACCESS_MINUTES:1440}
 
   cors:
-    allowed-origins: xeno-dusky.vercel.app
-    allowed-methods: GET,POST,PUT,DELETE,OPTIONS
-    allowed-headers: Authorization,Content-Type
-    allow-credentials: true
-
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:xeno-dusky.vercel.app}
+    allowed-methods: ${CORS_ALLOWED_METHODS:GET,POST,PUT,DELETE,OPTIONS}
+    allowed-headers: ${CORS_ALLOWED_HEADERS:Authorization,Content-Type}
+    allow-credentials: ${CORS_ALLOW_CREDENTIALS:true}
