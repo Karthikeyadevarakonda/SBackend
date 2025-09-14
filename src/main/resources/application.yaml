@@ -6,10 +6,18 @@ spring:
     name: XenoShopSync
 
   datasource:
-    url: jdbc:postgresql://${PGHOST:localhost}:${PGPORT:5432}/${PGDATABASE:shopify_db}
-    username: ${PGUSER:postgres}
-    password: ${PGPASSWORD:password}
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
 
   mail:
     host: ${MAIL_HOST:smtp-relay.brevo.com}
@@ -23,15 +31,6 @@ spring:
           starttls:
             enable: true
     from: ${MAIL_FROM:w.shaik28835@gmail.com}
-
-  jpa:
-    hibernate:
-      ddl-auto: update
-    show-sql: true
-    properties:
-      hibernate:
-        dialect: org.hibernate.dialect.PostgreSQLDialect
-        format_sql: true
 
 app:
   jwt:
